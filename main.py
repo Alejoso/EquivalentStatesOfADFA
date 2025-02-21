@@ -7,46 +7,38 @@ class Automata:
 
 
     def getEquivalentStates(self):
-        states = len(self.δ)
-        print(self.δ)
+        states = len(self.δ) # We stablish the number of states according to the transition table
         table = [[False] * states for _ in range(states)]  # Initialize the table with all False, create a nxn table
         
-        change = False
+        change = False # Initialize the change variable to False
         # Mark the pairs {p, q} if p is final and q is not, or vice versa
-        for i in range(states):
+        for i in range(states):  
             for j in range(states):
                 if (i in self.F) != (j in self.F):
                     table[i][j] = True 
-                    change = True 
+                    change = True # We itarate over the transition table and mark the pairs that one of them is a final state and the other is not
 
-        print("\nInitial minimization table:")
-        for row in table:
-            print(row)
-
-        while(change):
-            change = False
-            for i in range(1 , states):
+        while(change): # While there is a change in the table
+            change = False # Set the change variable to False so we can know if there are further changes in the table
+            for i in range(1 , states): # Iterate from one to the number of states, because the first row will always be false
                 for j in range(states):
-                    if i > j and not table[i][j]:
-                        for lexema in range(len(self.Σ)):
-                            p = self.δ[j][lexema + 1]
-                            q = self.δ[i][lexema + 1]
-                            if p != q and table[q][p] == True:
-                               table[i][j] = True
-                               change = True
-                            
+                    if i > j and not table[i][j]: # We only need to check for false values and for the lower triangle of the table
+                        for lexema in range(len(self.Σ)): # Iterate trougth 1 and 2
+                            p = self.δ[j][lexema + 1] # Get the next state for the lexema, being p the initial state we are looking to
+                            q = self.δ[i][lexema + 1] # Get the next state for the lexema, being q the final state we are looking to
+                            if p != q and table[q][p] == True: # If the states are different and the position we are looking to is marked as True
+                               table[i][j] = True # Mark the state as a nonequivalent state
+                               change = True # Put it as True to continue the loop 
+                             
           
-            
-
-
-        # Identifico los states equivalentes
-        pares_equivalentes = []
+        # Identify equivalent states
+        equivalentPairs = []
         for i in range(states):
             for j in range(i):
-                if not table[i][j]:  # Si no está marcado, son states son equivalentes
-                    pares_equivalentes.append((j,i ))  
+                if not table[i][j]:  # if isn't mark, is a equivalent state 
+                    equivalentPairs.append((j,i))  #Add it to equivalent states array
 
-        return pares_equivalentes
+        return equivalentPairs
 
 # Read the file and give it the alias "file"
 with open("example.txt", "r") as file:
@@ -57,7 +49,7 @@ NumberOfAutomata = int(lines[0].strip())
 i = 1
 cases = []
 
-# Procces every automata
+# Procces every automata in the .txt
 for _ in range(NumberOfAutomata):
     nLines = int(lines[i].strip())  #Get the numbre of states, then convert it into an int 
     Σ = lines[i+1].strip().split(" ")  # Get the alphabet, taking into account split for not getting empty spaces 
@@ -72,6 +64,6 @@ for _ in range(NumberOfAutomata):
     # Increase the counter
     i = nLines + 3 + i
     
-for idx, automata in enumerate(cases):
+for idx, automata in enumerate(cases): #Print the equivalent states
     equivalentes = automata.getEquivalentStates()
-    print("states equivalentes:", " ".join(f"({p},{q})" for p, q in equivalentes))
+    print("Equivalent states:", " ".join(f"({p},{q})" for p, q in equivalentes))
