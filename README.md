@@ -12,7 +12,7 @@ Class number **7308**
 - The operating systems we used for the testing and programming were Windows 11 and Kali Linux (Version 2024.4).
 - The tools used for the project were:
   
-    - **Visual Studio** as the editor.
+    - **Visual Studio** as the code editor.
     - **Git** for version control.
     - **GitHub** was used to upload the code to the cloud.
       
