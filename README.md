@@ -105,6 +105,6 @@ Extracts all the information from the .txt file according to the structure propo
 
     for idx, automata in enumerate(cases): #Print the equivalent states
         equivalentes = automata.getEquivalentStates()
-        print("Equivalent states:", " ".join(f"({p},{q})" for p, q in equivalentes))
+        print(" ".join(f"({p},{q})" for p, q in equivalentes))
 
 Prints the equivalent states of the DFA 
