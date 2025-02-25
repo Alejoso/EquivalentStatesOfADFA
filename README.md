@@ -18,7 +18,7 @@ Class number **7308**
       
 - The main algorithm was implemented based on lecture 14 of the book *Automata and Computability* by Kozen
 
-- Original repository [Here] (https://github.com/Alejoso/EquivalentStatesOfADFA)
+- Original repository [Here](https://github.com/Alejoso/EquivalentStatesOfADFA)
 
 ## How to run the code?
 
