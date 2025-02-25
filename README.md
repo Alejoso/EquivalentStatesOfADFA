@@ -18,6 +18,8 @@ Class number **7308**
       
 - The main algorithm was implemented based on lecture 14 of the book *Automata and Computability* by Kozen
 
+- Original repository [Here] (https://github.com/Alejoso/EquivalentStatesOfADFA)
+
 ## How to run the code?
 
 First, clone the Github project on your machine. Then, if you want to modify the script's inputs, you will need to modify the .txt document. The document already contains five cases (one extra that we took from Kozen's book). After changing the document data or leaving it untouched, you can run the script the way you prefer. 
